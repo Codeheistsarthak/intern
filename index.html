@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google-Inspired White & Green Header - Nested Dropdown Fix</title>
+  <title>Google-Inspired White & Green Header - Fixed Nested Dropdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Modern White & Green Design Variables - Refined */
     :root {
-      --primary-green: #34A853; /* A vibrant, modern Google-inspired green */
-      --light-green: #e6f4ea; /* Very light green for subtle accents/hovers */
-      --dark-green: #2F8D46; /* Darker green for active states */
+      --primary-green: #34A853;
+      --light-green: #e6f4ea;
+      --dark-green: #2F8D46;
       --white: #ffffff;
-      --off-white: #f5f5f5; /* A very subtle off-white for body background */
-      --light-gray: #e0e0e0; /* For subtle borders/dividers */
-      --text-color-dark: #202124; /* Google-inspired dark gray text */
-      --text-color-light: #5f6368; /* Lighter gray for secondary text */
-      --box-shadow-subtle: rgba(0, 0, 0, 0.04); /* Very light shadow */
-      --box-shadow-hover: rgba(0, 0, 0, 0.08); /* Slightly more visible on hover */
+      --off-white: #f5f5f5;
+      --light-gray: #e0e0e0;
+      --text-color-dark: #202124;
+      --text-color-light: #5f6368;
+      --box-shadow-subtle: rgba(0, 0, 0, 0.04);
+      --box-shadow-hover: rgba(0, 0, 0, 0.08);
       --border-radius-sm: 4px;
       --border-radius-md: 8px;
       --transition-speed-fast: 0.15s;
@@ -25,7 +28,6 @@
       --transition-speed-slow: 0.4s;
     }
 
-    /* Global reset and base styles */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -39,7 +41,17 @@
       line-height: 1.6;
     }
 
-    /* Skip link for accessibility */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
     .skip-link {
       position: absolute;
       top: -40px;
@@ -57,32 +69,29 @@
       top: 10px;
     }
 
-    /* Header styles */
     .site-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.8rem 2rem; /* Adjusted padding for a cleaner look */
+      padding: 0.8rem 2rem;
       background-color: var(--white);
       color: var(--text-color-dark);
-      box-shadow: 0 2px 4px var(--box-shadow-subtle); /* More subtle shadow */
+      box-shadow: 0 2px 4px var(--box-shadow-subtle);
       border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
       position: sticky;
       top: 0;
       z-index: 1000;
-      transition: box-shadow var(--transition-speed-normal) ease; /* Smooth shadow transition */
+      transition: box-shadow var(--transition-speed-normal) ease;
     }
 
-    /* Optional: Add a stronger shadow on scroll */
     .site-header.scrolled {
       box-shadow: 0 4px 8px var(--box-shadow-hover);
     }
 
-    /* Logo container */
     #logo-container {
-      width: 48px; /* Slightly smaller logo for minimalism */
+      width: 48px;
       height: 48px;
-      background-color: transparent; /* Transparent background */
+      background-color: transparent;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -92,13 +101,13 @@
     }
 
     #logo-container:hover {
-      background-color: rgba(0, 0, 0, 0.04); /* Subtle hover effect like Google */
-      transform: translateY(-1px); /* Slight lift */
+      background-color: rgba(0, 0, 0, 0.04);
+      transform: translateY(-1px);
     }
 
     .logo {
       display: none;
-      width: 32px; /* Adjusted logo size */
+      width: 32px;
       height: 32px;
     }
 
@@ -106,7 +115,6 @@
       display: block;
     }
 
-    /* SVG Logo Colors - Inspired by Google's use of simple shapes */
     .logo #logo-shape {
       fill: var(--primary-green);
     }
@@ -115,24 +123,23 @@
       fill: var(--white);
     }
 
-    /* Hamburger button */
     .hamburger {
-      display: none; /* Hidden by default for desktop */
+      display: none;
       background: none;
       border: none;
-      color: var(--text-color-light); /* Lighter gray for icon */
-      font-size: 28px; /* Adjusted size */
+      color: var(--text-color-light);
+      font-size: 28px;
       cursor: pointer;
       padding: 6px;
       line-height: 1;
       z-index: 1100;
       transition: transform var(--transition-speed-normal) ease-in-out, color var(--transition-speed-fast) ease, background-color var(--transition-speed-fast) ease;
-      border-radius: 50%; /* Circular button */
+      border-radius: 50%;
     }
 
     .hamburger:hover {
-      background-color: rgba(0, 0, 0, 0.04); /* Subtle hover */
-      color: var(--text-color-dark); /* Darken color on hover */
+      background-color: rgba(0, 0, 0, 0.04);
+      color: var(--text-color-dark);
     }
 
     .hamburger.nav-open {
@@ -143,12 +150,11 @@
     .hamburger:focus-visible {
       outline: 2px solid var(--primary-green);
       outline-offset: 2px;
-      background-color: var(--light-green); /* Highlight focus */
+      background-color: var(--light-green);
     }
 
-    /* Navigation styles */
     .nav-wrapper {
-      display: flex; /* To align nav links and action button */
+      display: flex;
       align-items: center;
     }
 
@@ -169,17 +175,16 @@
 
     .nav-links a {
       color: var(--text-color-dark);
-      margin-left: 20px; /* Adjusted spacing */
+      margin-left: 20px;
       text-decoration: none;
-      font-weight: 500; /* Lighter weight for main nav items */
+      font-weight: 500;
       font-size: 15px;
-      transition: color var(--transition-speed-fast) ease, background-color var(--transition-speed-fast) ease, transform 0.1s ease; /* Quicker transform */
+      transition: color var(--transition-speed-fast) ease, background-color var(--transition-speed-fast) ease, transform 0.1s ease;
       display: block;
-      padding: 8px 12px; /* Smaller padding for a tighter look */
+      padding: 8px 12px;
       border-radius: var(--border-radius-md);
     }
 
-    /* Active link styling */
     .nav-links a.active-link {
       background-color: var(--light-green);
       color: var(--primary-green);
@@ -187,27 +192,26 @@
 
     .nav-links a:not(.active-link):hover,
     .nav-links a:not(.active-link):focus-visible {
-      color: var(--text-color-dark); /* Keep dark text */
-      background-color: rgba(0, 0, 0, 0.04); /* Subtle gray hover */
-      transform: translateY(-1px); /* Slight lift on hover */
+      color: var(--text-color-dark);
+      background-color: rgba(0, 0, 0, 0.04);
+      transform: translateY(-1px);
     }
 
-    /* Dropdown indicator */
     .dropdown-parent > a {
       position: relative;
-      padding-right: 25px; /* Space for indicator */
+      padding-right: 25px;
     }
 
     .dropdown-parent > a::after {
       content: '';
       position: absolute;
-      right: 10px; /* Adjusted position */
+      right: 10px;
       top: 50%;
       width: 0;
       height: 0;
       border-left: 4px transparent solid;
       border-right: 4px transparent solid;
-      border-top: 4px var(--text-color-light) solid; /* Smaller, lighter indicator */
+      border-top: 4px var(--text-color-light) solid;
       transform: translateY(-50%);
       transition: transform var(--transition-speed-fast) ease-in-out, border-top-color var(--transition-speed-fast) ease;
     }
@@ -219,20 +223,19 @@
       border-top-color: var(--primary-green);
     }
 
-    /* Dropdown styles (top-level and nested) */
     .dropdown,
     .sub-dropdown {
       background-color: var(--white);
-      box-shadow: 0 2px 6px var(--box-shadow-hover); /* Lighter shadow */
+      box-shadow: 0 2px 6px var(--box-shadow-hover);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(5px); /* Slide down effect */
+      transform: translateY(5px);
       transition: opacity var(--transition-speed-fast) ease-out, visibility var(--transition-speed-fast) ease-out, transform var(--transition-speed-fast) ease-out;
       z-index: 1200;
       border-radius: var(--border-radius-md);
       padding: 8px 0;
-      border: 1px solid var(--light-gray); /* Subtle border */
-      min-width: 170px; /* Slightly adjusted min-width */
+      border: 1px solid var(--light-gray);
+      min-width: 170px;
     }
 
     .dropdown {
@@ -245,7 +248,7 @@
       position: absolute;
       top: 0;
       left: 100%;
-      margin-left: 5px; /* Slight offset for sub-dropdowns */
+      margin-left: 5px;
     }
 
     .dropdown-parent.dropdown-open > .dropdown,
@@ -263,11 +266,11 @@
     .dropdown a,
     .sub-dropdown a {
       margin-left: 0;
-      padding: 10px 18px; /* Adjusted padding */
+      padding: 10px 18px;
       font-size: 14px;
-      font-weight: 400; /* Regular weight for dropdown items */
+      font-weight: 400;
       color: var(--text-color-dark);
-      border-radius: 0; /* No border-radius for individual dropdown items */
+      border-radius: 0;
     }
 
     .dropdown a:hover,
@@ -278,9 +281,8 @@
       color: var(--primary-green);
     }
 
-    /* Action Button (e.g., "Get Started") */
     .action-button {
-      margin-left: 24px; /* Space from navigation */
+      margin-left: 24px;
       padding: 10px 20px;
       background-color: var(--primary-green);
       color: var(--white);
@@ -290,8 +292,8 @@
       border-radius: var(--border-radius-md);
       transition: background-color var(--transition-speed-fast) ease, transform 0.1s ease, box-shadow var(--transition-speed-fast) ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      border: none; /* Ensure no default button border */
-      cursor: pointer; /* Indicate it's clickable */
+      border: none;
+      cursor: pointer;
     }
 
     .action-button:hover {
@@ -305,18 +307,15 @@
       outline-offset: 2px;
     }
 
-
-    /* Responsive adjustments */
     @media (max-width: 768px) {
       .site-header {
         padding: 0.7rem 4%;
         border-radius: 0;
-        box-shadow: 0 2px 4px var(--box-shadow-subtle); /* Reset shadow for mobile */
+        box-shadow: 0 2px 4px var(--box-shadow-subtle);
       }
       .site-header.scrolled {
-        box-shadow: 0 4px 8px var(--box-shadow-hover); /* Keep scroll shadow for mobile too */
+        box-shadow: 0 4px 8px var(--box-shadow-hover);
       }
-
 
       #logo-container {
         width: 44px;
@@ -329,97 +328,91 @@
       }
 
       .hamburger {
-        display: block; /* Hamburger should be visible on mobile */
-        /* Ensure hamburger remains in its place */
-        position: relative; /* If needed for stacking context */
-        z-index: 1200; /* Above menu to be clickable */
+        display: block;
+        position: relative;
+        z-index: 1200;
       }
 
-      /* Mobile Navigation Drawer - Refactored */
       .nav-wrapper {
-        position: absolute; /* Position relative to site-header */
-        top: 100%; /* Below the header */
+        position: absolute;
+        top: 100%;
         left: 0;
         width: 100%;
-        max-height: 0; /* Start hidden */
+        max-height: 0;
         background-color: var(--white);
         opacity: 0;
-        visibility: hidden; /* Ensure initially hidden */
+        visibility: hidden;
         z-index: 999;
         border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Consistent shadow */
-        overflow-y: hidden; /* Hide overflow initially */
-        /* Transitions for max-height, opacity, and visibility */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow-y: hidden;
         transition: max-height var(--transition-speed-slow) ease-in-out,
                     opacity var(--transition-speed-normal) ease-in-out,
                     visibility var(--transition-speed-normal) ease-in-out;
-        flex-direction: column; /* Stack children vertically */
-        align-items: center; /* Center items */
-        padding-bottom: 0; /* No bottom padding when closed */
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 0;
       }
 
       .nav-wrapper.nav-open {
-        max-height: calc(100vh - 64px); /* Full height minus header height, or generous value */
+        max-height: calc(100vh - 64px);
         opacity: 1;
         visibility: visible;
-        overflow-y: auto; /* Allow scrolling for content longer than max-height */
-        padding-bottom: 20px; /* Add some padding at the bottom when open */
+        overflow-y: auto;
+        padding-bottom: 20px;
       }
 
       .nav-wrapper .nav-links {
-        width: 100%; /* Full width within the wrapper */
-        margin-bottom: 10px; /* Space between nav and button */
+        width: 100%;
+        margin-bottom: 10px;
       }
 
       .nav-links ul {
         flex-direction: column;
-        align-items: flex-start; /* Align text left */
+        align-items: flex-start;
         padding: 20px;
-        padding-top: 10px; /* Adjust padding */
+        padding-top: 10px;
       }
 
       .nav-links li {
-        width: 100%; /* Full width list items */
+        width: 100%;
       }
 
       .nav-links a {
-        margin: 5px 0; /* Reduced margin for tighter list */
+        margin: 5px 0;
         font-size: 16px;
         width: 100%;
-        padding: 12px 15px; /* Larger touch area for mobile */
+        padding: 12px 15px;
       }
 
-      /* Mobile: Active link just highlights text, no background */
       .nav-links a.active-link {
         background-color: transparent;
         color: var(--primary-green);
       }
 
-      /* Mobile: Dropdowns - Simplified to just expand within their parent flow */
       .dropdown,
       .sub-dropdown {
-        position: static; /* No absolute positioning */
+        position: static;
         transform: none;
-        background-color: var(--off-white); /* Slightly different background for visual nesting */
+        background-color: var(--off-white);
         box-shadow: none;
         padding-left: 20px;
         opacity: 0;
         visibility: hidden;
-        max-height: 0; /* Start collapsed */
+        max-height: 0;
         overflow: hidden;
         transition: max-height var(--transition-speed-slow) ease-in-out,
                     opacity var(--transition-speed-normal) ease-in-out,
                     visibility var(--transition-speed-normal) ease-in-out;
         border-radius: 0;
         border: none;
-        width: 100%; /* Important for nested links to fill width */
+        width: 100%;
       }
 
       .dropdown-parent.dropdown-open > .dropdown,
       .dropdown-parent.dropdown-open > .sub-dropdown {
         visibility: visible;
         opacity: 1;
-        max-height: 500px; /* A large enough value to accommodate content */
       }
 
       .sub-dropdown {
@@ -430,18 +423,32 @@
         right: 15px;
       }
 
-      /* Action button in mobile menu */
+      .dropdown-parent > a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.05);
+        opacity: 0;
+        transition: opacity var(--transition-speed-fast) ease;
+      }
+
+      .dropdown-parent > a:active::before {
+        opacity: 1;
+      }
+
       .action-button {
         display: block;
-        width: calc(100% - 40px); /* Adjust width to fit padding */
-        margin: 15px auto 0; /* Center it */
+        width: calc(100% - 40px);
+        margin: 15px auto 0;
         text-align: center;
         padding: 12px 20px;
-        box-shadow: none; /* No shadow in mobile menu */
+        box-shadow: none;
       }
     }
 
-    /* Desktop styles */
     @media (min-width: 769px) {
       #logo-lg {
         display: block;
@@ -452,9 +459,9 @@
       }
 
       .nav-wrapper {
-        display: flex; /* Keep wrapper visible and flex for desktop */
-        flex-grow: 1; /* Allow it to take available space */
-        justify-content: flex-end; /* Push content to the right */
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
         align-items: center;
       }
 
@@ -463,9 +470,9 @@
         opacity: 1 !important;
         max-height: none !important;
         overflow: visible !important;
-        flex-grow: 1; /* Allow nav links to grow */
-        justify-content: flex-end; /* Push links to the right */
-        display: flex; /* Ensure links are aligned */
+        flex-grow: 1;
+        justify-content: flex-end;
+        display: flex;
       }
 
       .nav-links ul {
@@ -473,7 +480,6 @@
         justify-content: flex-end;
       }
 
-      /* Desktop: Dropdowns open on hover/focus */
       .nav-links .dropdown-parent:hover > .dropdown,
       .nav-links .dropdown-parent:focus-within > .dropdown,
       .nav-links .dropdown-parent:hover > .sub-dropdown,
@@ -482,10 +488,14 @@
         visibility: visible;
         transform: translateY(0);
       }
+
+      .dropdown,
+      .sub-dropdown {
+        transition-delay: 0.1s;
+      }
     }
 
-    /* High contrast for accessibility */
-    @media (prefers-contrast: high) {
+    @media (prefers-contrast: high), (forced-colors: active) {
       #logo-container {
         background: var(--primary-green);
       }
@@ -499,47 +509,51 @@
       }
 
       .site-header {
-        background: #000;
-        color: #fff;
+        forced-color-adjust: none;
+        background: Canvas;
+        color: CanvasText;
         box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid CanvasText;
       }
 
       .hamburger {
-        color: #fff;
-        border: 1px solid #fff;
+        color: CanvasText;
+        border: 1px solid CanvasText;
       }
+
       .hamburger:hover {
-        background-color: #333;
-        color: #fff;
+        background-color: Canvas;
+        color: CanvasText;
       }
 
       .nav-links,
       .dropdown,
       .sub-dropdown {
-        background: #000 !important;
-        border-color: #fff !important;
+        background: Canvas !important;
+        border-color: CanvasText !important;
         box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3) !important;
       }
 
       .nav-links a {
-        color: #fff;
+        color: CanvasText;
       }
 
       .nav-links a:hover,
       .nav-links a:focus-visible {
-        color: #000;
+        color: CanvasText;
         background: var(--primary-green);
       }
 
       .nav-links a.active-link {
-        background-color: var(--primary-green) !important;
-        color: #000 !important;
-        box-shadow: inset 0 0 0 2px #fff !important;
+        background-color: Highlight !important;
+        color: HighlightText !important;
+        box-shadow: inset 0 0 0 2px CanvasText !important;
       }
 
       .dropdown-parent > a::after {
-        border-top-color: #fff !important;
+        border-top-color: CanvasText !important;
       }
+
       .dropdown-parent.dropdown-open > a::after,
       .dropdown-parent > a:hover::after,
       .dropdown-parent > a:focus-visible::after {
@@ -547,18 +561,20 @@
       }
 
       .action-button {
-        background-color: #fff;
-        color: #000;
-        border: 1px solid #fff;
+        background-color: CanvasText;
+        color: Canvas;
+        border: 1px solid CanvasText;
       }
+
       .action-button:hover {
         background-color: var(--primary-green);
-        color: #fff;
+        color: CanvasText;
       }
     }
   </style>
 </head>
 <body>
+  <div aria-live="polite" class="visually-hidden" id="menu-status"></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <header class="site-header">
     <div id="logo-container">
@@ -572,64 +588,54 @@
       </svg>
     </div>
     <button class="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">☰</button>
-
     <div class="nav-wrapper">
-        <nav id="nav-links" class="nav-links" aria-label="Main navigation">
-            <ul>
-                <li><a href="/" aria-current="page">Home</a></li>
-                <li class="dropdown-parent">
-                    <a href="/about" aria-haspopup="true" aria-expanded="false" aria-label="About menu">About</a>
-                    <ul class="dropdown">
-                        <li><a href="/about/team">Our Team</a></li>
-                        <li><a href="/about/history">Our Story</a></li>
-                        <li><a href="/about/mission">Our Mission</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown-parent">
-                    <a href="/services" aria-haspopup="true" aria-expanded="false" aria-label="Services menu">Services</a>
-                    <ul class="dropdown">
-                        <li class="dropdown-parent">
-                            <a href="/services/consulting" aria-haspopup="true" aria-expanded="false" aria-label="Consulting services submenu">Consulting</a>
-                            <ul class="dropdown sub-dropdown">
-                                <li><a href="/services/consulting/strategy">Strategy</a></li>
-                                <li><a href="/services/consulting/operations">Operations</a></li>
-                                <li><a href="/services/consulting/digital">Digital</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/services/development">Development</a></li>
-                        <li><a href="/services/marketing">Marketing</a></li>
-                    </ul>
-                </li>
-                <li><a href="/portfolio">Portfolio</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/contact">Contact</a></li>
+      <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+        <ul>
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li class="dropdown-parent">
+            <a href="/about" aria-haspopup="true" aria-expanded="false" aria-label="About menu">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/team">Our Team</a></li>
+              <li><a href="/about/history">Our Story</a></li>
+              <li><a href="/about/mission">Our Mission</a></li>
             </ul>
-        </nav>
-        <button class="action-button">Get Started</button>
+          </li>
+          <li class="dropdown-parent">
+            <a href="/services" aria-haspopup="true" aria-expanded="false" aria-label="Services menu">Services</a>
+            <ul class="dropdown">
+              <li class="dropdown-parent">
+                <a href="/services/consulting" aria-haspopup="true" aria-expanded="false" aria-label="Consulting services submenu">Consulting</a>
+                <ul class="dropdown sub-dropdown">
+                  <li><a href="/services/consulting/strategy">Strategy</a></li>
+                  <li><a href="/services/consulting/operations">Operations</a></li>
+                  <li><a href="/services/consulting/digital">Digital</a></li>
+                </ul>
+              </li>
+              <li><a href="/services/development">Development</a></li>
+              <li><a href="/services/marketing">Marketing</a></li>
+            </ul>
+          </li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="action-button">Get Started</button>
     </div>
   </header>
   <main id="main-content">
     <p style="height: 1200px; padding: 20px;">Main content goes here. Scroll down to see the sticky header in action!</p>
   </main>
   <script>
-    // --- Element Selectors ---
     const siteHeader = document.querySelector('.site-header');
     const logoLg = document.getElementById('logo-lg');
     const logoSm = document.getElementById('logo-sm');
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.getElementById('nav-links');
-    const navWrapper = document.querySelector('.nav-wrapper'); // Select the nav wrapper
+    const navWrapper = document.querySelector('.nav-wrapper');
     const dropdownToggles = document.querySelectorAll('.dropdown-parent > a[aria-haspopup="true"]');
     const allNavLinks = navLinks ? navLinks.querySelectorAll('a') : [];
 
-    // --- Utility Functions ---
-
-    /**
-     * Debounces a function call.
-     * @param {function} func The function to debounce.
-     * @param {number} wait The debounce time in milliseconds.
-     * @returns {function} The debounced function.
-     */
     function debounce(func, wait) {
       let timeout;
       return (...args) => {
@@ -638,19 +644,10 @@
       };
     }
 
-    /**
-     * Checks if the current screen width is mobile.
-     * @returns {boolean} True if mobile, false otherwise.
-     */
     function isMobileView() {
       return window.matchMedia('(max-width: 768px)').matches;
     }
 
-    // --- Core Header Functionality ---
-
-    /**
-     * Updates the active logo (desktop vs. mobile) based on screen width.
-     */
     function updateLogo() {
       if (!logoLg || !logoSm) return;
       const isDesktop = !isMobileView();
@@ -658,15 +655,11 @@
       logoSm.classList.toggle('active', !isDesktop);
     }
 
-    /**
-     * Sets the 'active-link' class on the current page's navigation item.
-     */
     function setActiveLink() {
       const path = window.location.pathname;
       allNavLinks.forEach(link => {
         link.classList.remove('active-link');
         link.removeAttribute('aria-current');
-
         if (link.pathname === path || (link.pathname === "/" && path === "/")) {
           link.classList.add('active-link');
           link.setAttribute('aria-current', 'page');
@@ -674,156 +667,168 @@
       });
     }
 
-    /**
-     * Toggles the mobile navigation menu's open/closed state.
-     */
     function toggleMenu() {
       if (!hamburger || !navWrapper) return;
-
       const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.setAttribute('aria-expanded', !isExpanded);
       hamburger.classList.toggle('nav-open');
       hamburger.textContent = isExpanded ? '☰' : '✕';
-
       navWrapper.classList.toggle('nav-open', !isExpanded);
-
-      if (isExpanded) { // If closing the main menu
-        closeAllDropdowns(); // Close all open dropdowns within it
+      const menuStatus = document.getElementById('menu-status');
+      if (menuStatus) {
+        menuStatus.textContent = !isExpanded ? 'Navigation menu opened' : 'Navigation menu closed';
       }
-
+      if (isExpanded) {
+        closeAllDropdowns();
+      }
       if (!isExpanded && isMobileView()) {
         trapFocus();
       }
     }
 
-    /**
-     * Toggles the open/closed state of a dropdown menu.
-     * @param {Event} event The click event.
-     */
     function toggleDropdown(event) {
       const toggle = event.currentTarget;
-      const parent = toggle.parentElement; // The <li>.dropdown-parent for the current toggle
+      const parent = toggle.parentElement;
+      const dropdown = parent.querySelector('.dropdown, .sub-dropdown');
       const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
 
-      // First, close all other dropdowns that are not ancestors of the current clicked dropdown.
-      dropdownToggles.forEach(otherToggle => {
-        if (otherToggle !== toggle) { // Don't process the current toggle yet
-          const otherParent = otherToggle.parentElement; // The <li>.dropdown-parent for the other toggle
+      if (isMobileView() && dropdown) {
+        if (!isExpanded) {
+          dropdown.style.maxHeight = `${dropdown.scrollHeight}px`;
+        } else {
+          dropdown.style.maxHeight = '0';
+        }
+        // Update max-height of parent dropdowns to include nested content
+        let currentParent = parent;
+        while (currentParent && currentParent.classList.contains('dropdown-parent')) {
+          const parentDropdown = currentParent.querySelector('.dropdown, .sub-dropdown');
+          if (parentDropdown && !isExpanded) {
+            let totalHeight = parentDropdown.scrollHeight;
+            const nestedDropdowns = parentDropdown.querySelectorAll('.dropdown, .sub-dropdown');
+            nestedDropdowns.forEach(nested => {
+              if (nested.style.maxHeight && parseFloat(nested.style.maxHeight) > 0) {
+                totalHeight += nested.scrollHeight;
+              }
+            });
+            parentDropdown.style.maxHeight = `${totalHeight}px`;
+          }
+          currentParent = currentParent.parentElement.closest('.dropdown-parent');
+        }
+      }
 
-          // Check if the other dropdown is open
-          if (otherParent.classList.contains('dropdown-open')) {
-            // Check if the 'otherToggle' (e.g., Services) is NOT an ancestor of the current 'toggle' (e.g., Consulting)
-            // If `parent.contains(otherToggle)` is true, it means `otherToggle` is an ancestor of `toggle`,
-            // so we should NOT close it. We only close if `otherToggle` is a sibling or an unrelated dropdown.
-            if (!parent.contains(otherToggle)) {
-              otherToggle.setAttribute('aria-expanded', 'false');
-              otherParent.classList.remove('dropdown-open');
-            }
+      const dropdownsToKeepOpen = new Set();
+      dropdownsToKeepOpen.add(parent);
+      let currentAncestor = parent.parentElement;
+      while (currentAncestor && currentAncestor !== navLinks) {
+        if (currentAncestor.classList.contains('dropdown-parent')) {
+          dropdownsToKeepOpen.add(currentAncestor);
+          const parentDropdown = currentAncestor.querySelector('.dropdown, .sub-dropdown');
+          if (isMobileView() && parentDropdown && !isExpanded) {
+            let totalHeight = parentDropdown.scrollHeight;
+            const nestedDropdowns = parentDropdown.querySelectorAll('.dropdown, .sub-dropdown');
+            nestedDropdowns.forEach(nested => {
+              if (nested.style.maxHeight && parseFloat(nested.style.maxHeight) > 0) {
+                totalHeight += nested.scrollHeight;
+              }
+            });
+            parentDropdown.style.maxHeight = `${totalHeight}px`;
+          }
+        }
+        currentAncestor = currentAncestor.parentElement;
+      }
+
+      dropdownToggles.forEach(otherToggle => {
+        const otherParent = otherToggle.parentElement;
+        if (otherParent.classList.contains('dropdown-open') && !dropdownsToKeepOpen.has(otherParent)) {
+          otherToggle.setAttribute('aria-expanded', 'false');
+          otherParent.classList.remove('dropdown-open');
+          if (isMobileView()) {
+            const otherDropdown = otherParent.querySelector('.dropdown, .sub-dropdown');
+            if (otherDropdown) otherDropdown.style.maxHeight = '0';
           }
         }
       });
 
-      // Now, toggle the current dropdown
       toggle.setAttribute('aria-expanded', !isExpanded);
       parent.classList.toggle('dropdown-open');
 
       if (isMobileView()) {
-        event.preventDefault(); // Prevent navigation on mobile for dropdown toggles
+        event.preventDefault();
       }
-      event.stopPropagation(); // Stop propagation to prevent document click from closing immediately
+      event.stopPropagation();
     }
 
-
-    /**
-     * Closes all currently open dropdown menus.
-     */
     function closeAllDropdowns() {
       dropdownToggles.forEach(toggle => {
         toggle.setAttribute('aria-expanded', 'false');
         toggle.parentElement.classList.remove('dropdown-open');
+        if (isMobileView()) {
+          const dropdown = toggle.parentElement.querySelector('.dropdown, .sub-dropdown');
+          if (dropdown) dropdown.style.maxHeight = '0';
+        }
       });
     }
 
-    /**
-     * Handles clicks outside the navigation menu to close it.
-     * Applies to both main mobile menu and desktop dropdowns.
-     * @param {Event} event The click event.
-     */
     function handleOutsideClick(event) {
-      // Close main mobile menu if open and click is outside
+      let clickedOnHamburger = hamburger && hamburger.contains(event.target);
+      let clickedInsideNavWrapper = navWrapper && navWrapper.contains(event.target);
+      let clickedInsideHeader = siteHeader.contains(event.target);
       if (isMobileView() && hamburger && hamburger.getAttribute('aria-expanded') === 'true' &&
-          !navWrapper.contains(event.target) && !hamburger.contains(event.target)) {
+          !clickedInsideNavWrapper && !clickedOnHamburger) {
         toggleMenu();
         return;
       }
-
-      // Close any open dropdowns if click is outside all open dropdowns
       let clickedInsideOpenDropdown = false;
       dropdownToggles.forEach(toggle => {
-          if (toggle.getAttribute('aria-expanded') === 'true' && toggle.parentElement.contains(event.target)) {
-              clickedInsideOpenDropdown = true;
-          }
+        if (toggle.getAttribute('aria-expanded') === 'true' && toggle.parentElement.contains(event.target)) {
+          clickedInsideOpenDropdown = true;
+        }
       });
-      // Also ensure click isn't on the hamburger itself (which might be a dropdown toggle on desktop if menu is hidden)
-      if (!clickedInsideOpenDropdown && !hamburger.contains(event.target)) {
-          closeAllDropdowns();
+      if (!clickedInsideOpenDropdown && !clickedOnHamburger && !clickedInsideNavWrapper && !clickedInsideHeader) {
+        closeAllDropdowns();
       }
     }
 
-
-    /**
-     * Traps focus within the mobile menu when it's open for accessibility.
-     */
     function trapFocus() {
       if (!navWrapper || !hamburger || !isMobileView()) return;
-
-      const focusableElements = navWrapper.querySelectorAll('a, button');
+      const focusableElements = navWrapper.querySelectorAll(
+        'a:not([style="display: none;"]), button:not([style="display: none;"])'
+      );
       const firstFocusable = focusableElements.length > 0 ? focusableElements[0] : null;
       const lastFocusable = focusableElements.length > 0 ? focusableElements[focusableElements.length - 1] : null;
-
       if (!firstFocusable || !lastFocusable) return;
-
       setTimeout(() => {
-          if (document.activeElement !== firstFocusable && document.activeElement !== hamburger) {
-              firstFocusable.focus();
-          }
+        if (document.activeElement !== firstFocusable && document.activeElement !== hamburger) {
+          firstFocusable.focus();
+        }
       }, 50);
-
       navWrapper.removeEventListener('keydown', handleTrapFocusKeydown);
       navWrapper.addEventListener('keydown', handleTrapFocusKeydown);
     }
 
-    /**
-     * Keydown handler for trapFocus.
-     * @param {Event} event The keydown event.
-     */
     function handleTrapFocusKeydown(event) {
-        if (!isMobileView() || hamburger.getAttribute('aria-expanded') !== 'true') return;
-        if (event.key === 'Tab') {
-            const focusableElements = navWrapper.querySelectorAll('a, button');
-            const firstFocusable = focusableElements.length > 0 ? focusableElements[0] : null;
-            const lastFocusable = focusableElements.length > 0 ? focusableElements[focusableElements.length - 1] : null;
-
-            if (!firstFocusable || !lastFocusable) return;
-
-            if (event.shiftKey) {
-                if (document.activeElement === firstFocusable) {
-                    event.preventDefault();
-                    lastFocusable.focus();
-                }
-            } else {
-                if (document.activeElement === lastFocusable) {
-                    event.preventDefault();
-                    firstFocusable.focus();
-                }
-            }
+      if (!isMobileView() || hamburger.getAttribute('aria-expanded') !== 'true') return;
+      if (event.key === 'Tab') {
+        const focusableElements = navWrapper.querySelectorAll(
+          'a:not([style="display: none;"]), button:not([style="display: none;"])'
+        );
+        const firstFocusable = focusableElements.length > 0 ? focusableElements[0] : null;
+        const lastFocusable = focusableElements.length > 0 ? focusableElements[focusableElements.length - 1] : null;
+        if (!firstFocusable || !lastFocusable) return;
+        if (event.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            event.preventDefault();
+            lastFocusable.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            event.preventDefault();
+            firstFocusable.focus();
+          }
         }
+      }
     }
 
-    /**
-     * Handles global keydown events for accessibility (e.g., Escape key).
-     * @param {Event} event The keydown event.
-     */
     function handleGlobalKeyDown(event) {
       if (event.key === 'Escape') {
         if (hamburger && hamburger.getAttribute('aria-expanded') === 'true') {
@@ -834,18 +839,13 @@
       }
     }
 
-    /**
-     * Adds a shadow to the header when scrolled.
-     */
     function handleScrollShadow() {
-        if (window.scrollY > 0) {
-            siteHeader.classList.add('scrolled');
-        } else {
-            siteHeader.classList.remove('scrolled');
-        }
+      if (window.scrollY > 0) {
+        siteHeader.classList.add('scrolled');
+      } else {
+        siteHeader.classList.remove('scrolled');
+      }
     }
-
-    // --- Initialization and Event Listeners ---
 
     document.addEventListener('DOMContentLoaded', () => {
       closeAllDropdowns();
@@ -854,20 +854,18 @@
       handleScrollShadow();
     });
 
-    const debouncedUpdateLogo = debounce(updateLogo, 100);
-    window.addEventListener('resize', () => {
-      debouncedUpdateLogo();
-      if (navWrapper) {
-          if (!isMobileView()) {
-              navWrapper.classList.remove('nav-open');
-              hamburger.setAttribute('aria-expanded', 'false');
-              hamburger.classList.remove('nav-open');
-              hamburger.textContent = '☰';
-              closeAllDropdowns();
-          }
+    const debouncedResizeHandler = debounce(() => {
+      updateLogo();
+      if (navWrapper && !isMobileView()) {
+        navWrapper.classList.remove('nav-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.classList.remove('nav-open');
+        hamburger.textContent = '☰';
+        closeAllDropdowns();
       }
-    });
+    }, 100);
 
+    window.addEventListener('resize', debouncedResizeHandler);
     const mediaQuery = window.matchMedia('(min-width: 769px)');
     mediaQuery.addEventListener('change', updateLogo);
 
@@ -892,6 +890,19 @@
       });
     }
 
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = anchor.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (isMobileView() && hamburger.getAttribute('aria-expanded') === 'true') {
+          toggleMenu();
+        }
+      });
+    });
 
     document.addEventListener('click', handleOutsideClick);
     document.addEventListener('keydown', handleGlobalKeyDown);
