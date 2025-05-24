@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google-Inspired White & Green Header - Fixed Nested Dropdown</title>
+  <title>Google-Inspired White & Green Header - Vertical Dropdown</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
@@ -246,9 +246,9 @@
 
     .sub-dropdown {
       position: absolute;
-      top: 0;
-      left: 100%;
-      margin-left: 5px;
+      top: 100%;
+      left: 0;
+      margin-top: 5px;
     }
 
     .dropdown-parent.dropdown-open > .dropdown,
@@ -266,11 +266,12 @@
     .dropdown a,
     .sub-dropdown a {
       margin-left: 0;
-      padding: 10px 18px;
+      padding: 12px 20px;
       font-size: 14px;
       font-weight: 400;
       color: var(--text-color-dark);
       border-radius: 0;
+      position: relative;
     }
 
     .dropdown a:hover,
@@ -279,6 +280,24 @@
     .sub-dropdown a:focus-visible {
       background-color: var(--light-green);
       color: var(--primary-green);
+      transform: translateX(2px);
+    }
+
+    .dropdown a.active-link,
+    .sub-dropdown a.active-link {
+      position: relative;
+      color: var(--primary-green);
+    }
+
+    .dropdown a.active-link::before,
+    .sub-dropdown a.active-link::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: var(--primary-green);
     }
 
     .action-button {
@@ -491,7 +510,83 @@
 
       .dropdown,
       .sub-dropdown {
+        transition: opacity var(--transition-speed-fast) ease-out, visibility var(--transition-speed-fast) ease-out, transform var(--transition-speed-fast) ease-out, background-color var(--transition-speed-normal) ease;
         transition-delay: 0.1s;
+      }
+
+      /* Reverted Dropdown Styles from Previous Response */
+      .dropdown {
+        padding: 12px 0;
+        border: 1px solid var(--light-gray);
+        background-color: var(--white);
+        transform-origin: top;
+        transform: translateY(8px);
+      }
+
+      .sub-dropdown {
+        transform: translateY(0);
+        transition-delay: 0.15s; /* Slight stagger for sub-dropdowns */
+      }
+
+      .dropdown-parent:hover > .dropdown,
+      .dropdown-parent:focus-within > .dropdown,
+      .dropdown-parent.dropdown-open > .dropdown,
+      .dropdown-parent:hover > .sub-dropdown,
+      .dropdown-parent:focus-within > .sub-dropdown,
+      .dropdown-parent.dropdown-open > .sub-dropdown {
+        transform: translateY(0);
+        background-color: var(--white);
+        border-color: var(--primary-green);
+      }
+
+      .dropdown a,
+      .sub-dropdown a {
+        padding: 12px 20px;
+        transition: background-color var(--transition-speed-fast) ease, color var(--transition-speed-fast) ease, transform var(--transition-speed-fast) ease;
+      }
+
+      .dropdown a:hover,
+      .sub-dropdown a:hover,
+      .dropdown a:focus-visible,
+      .sub-dropdown a:focus-visible {
+        background-color: var(--light-green);
+        color: var(--primary-green);
+        transform: translateX(2px);
+      }
+
+      .dropdown a.active-link,
+      .sub-dropdown a.active-link {
+        position: relative;
+        color: var(--primary-green);
+      }
+
+      .dropdown a.active-link::before,
+      .sub-dropdown a.active-link::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: var(--primary-green);
+      }
+
+      /* Vertical Sub-Dropdown Positioning */
+      .dropdown-parent > .dropdown {
+        left: 0;
+        right: auto;
+      }
+
+      .dropdown-parent > .sub-dropdown {
+        top: 100%;
+        left: 0;
+        margin-top: 5px;
+        margin-left: 0;
+      }
+
+      .dropdown-parent > .dropdown,
+      .dropdown-parent > .sub-dropdown {
+        max-width: calc(100vw - 20px);
       }
     }
 
@@ -577,47 +672,47 @@
   <div aria-live="polite" class="visually-hidden" id="menu-status"></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <div id="logo-container">
-      <svg id="logo-lg" class="logo active" viewBox="0 0 100 100" aria-label="Desktop logo">
+    <a href="/" id="logo-container" role="img" aria-label="Homepage">
+      <svg id="logo-lg" class="logo active" viewBox="0 0 100 100" aria-hidden="true">
         <path id="logo-shape" d="M50 0 L100 25 L100 75 L50 100 L0 75 L0 25 Z" />
         <circle id="logo-inner-circle" cx="50" cy="50" r="25" />
       </svg>
-      <svg id="logo-sm" class="logo" viewBox="0 0 100 100" aria-label="Mobile logo">
+      <svg id="logo-sm" class="logo" viewBox="0 0 100 100" aria-hidden="true">
         <circle id="logo-shape" cx="50" cy="50" r="40" />
         <path id="logo-inner-circle" d="M30 50 L45 65 L70 35 L70 50 L45 75 L30 60 Z" />
       </svg>
-    </div>
+    </a>
     <button class="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">☰</button>
     <div class="nav-wrapper">
-      <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+      <nav id="nav-links" class="nav-links" aria-label="Main navigation" role="menubar">
         <ul>
-          <li><a href="/" aria-current="page">Home</a></li>
-          <li class="dropdown-parent">
-            <a href="/about" aria-haspopup="true" aria-expanded="false" aria-label="About menu">About</a>
-            <ul class="dropdown">
-              <li><a href="/about/team">Our Team</a></li>
-              <li><a href="/about/history">Our Story</a></li>
-              <li><a href="/about/mission">Our Mission</a></li>
+          <li role="none"><a href="/" aria-current="page" role="menuitem">Home</a></li>
+          <li class="dropdown-parent" role="none">
+            <a href="/about" aria-haspopup="true" aria-expanded="false" aria-label="About menu" role="menuitem">About</a>
+            <ul class="dropdown" role="menu">
+              <li role="none"><a href="/about/team" role="menuitem">Our Team</a></li>
+              <li role="none"><a href="/about/history" role="menuitem">Our Story</a></li>
+              <li role="none"><a href="/about/mission" role="menuitem">Our Mission</a></li>
             </ul>
           </li>
-          <li class="dropdown-parent">
-            <a href="/services" aria-haspopup="true" aria-expanded="false" aria-label="Services menu">Services</a>
-            <ul class="dropdown">
-              <li class="dropdown-parent">
-                <a href="/services/consulting" aria-haspopup="true" aria-expanded="false" aria-label="Consulting services submenu">Consulting</a>
-                <ul class="dropdown sub-dropdown">
-                  <li><a href="/services/consulting/strategy">Strategy</a></li>
-                  <li><a href="/services/consulting/operations">Operations</a></li>
-                  <li><a href="/services/consulting/digital">Digital</a></li>
+          <li class="dropdown-parent" role="none">
+            <a href="/services" aria-haspopup="true" aria-expanded="false" aria-label="Services menu" role="menuitem">Services</a>
+            <ul class="dropdown" role="menu">
+              <li class="dropdown-parent" role="none">
+                <a href="/services/consulting" aria-haspopup="true" aria-expanded="false" aria-label="Consulting services submenu" role="menuitem">Consulting</a>
+                <ul class="dropdown sub-dropdown" role="menu">
+                  <li role="none"><a href="/services/consulting/strategy" role="menuitem">Strategy</a></li>
+                  <li role="none"><a href="/services/consulting/operations" role="menuitem">Operations</a></li>
+                  <li role="none"><a href="/services/consulting/digital" role="menuitem">Digital</a></li>
                 </ul>
               </li>
-              <li><a href="/services/development">Development</a></li>
-              <li><a href="/services/marketing">Marketing</a></li>
+              <li role="none"><a href="/services/development" role="menuitem">Development</a></li>
+              <li role="none"><a href="/services/marketing" role="menuitem">Marketing</a></li>
             </ul>
           </li>
-          <li><a href="/portfolio">Portfolio</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li role="none"><a href="/portfolio" role="menuitem">Portfolio</a></li>
+          <li role="none"><a href="/blog" role="menuitem">Blog</a></li>
+          <li role="none"><a href="/contact" role="menuitem">Contact</a></li>
         </ul>
       </nav>
       <button class="action-button">Get Started</button>
@@ -635,6 +730,7 @@
     const navWrapper = document.querySelector('.nav-wrapper');
     const dropdownToggles = document.querySelectorAll('.dropdown-parent > a[aria-haspopup="true"]');
     const allNavLinks = navLinks ? navLinks.querySelectorAll('a') : [];
+    let hoverTimeout;
 
     function debounce(func, wait) {
       let timeout;
@@ -698,7 +794,6 @@
         } else {
           dropdown.style.maxHeight = '0';
         }
-        // Update max-height of parent dropdowns to include nested content
         let currentParent = parent;
         while (currentParent && currentParent.classList.contains('dropdown-parent')) {
           const parentDropdown = currentParent.querySelector('.dropdown, .sub-dropdown');
@@ -751,6 +846,10 @@
 
       toggle.setAttribute('aria-expanded', !isExpanded);
       parent.classList.toggle('dropdown-open');
+      const menuStatus = document.getElementById('menu-status');
+      if (menuStatus && !isMobileView()) {
+        menuStatus.textContent = !isExpanded ? `${toggle.textContent} menu opened` : `${toggle.textContent} menu closed`;
+      }
 
       if (isMobileView()) {
         event.preventDefault();
@@ -767,6 +866,10 @@
           if (dropdown) dropdown.style.maxHeight = '0';
         }
       });
+      const menuStatus = document.getElementById('menu-status');
+      if (menuStatus && !isMobileView()) {
+        menuStatus.textContent = 'All dropdown menus closed';
+      }
     }
 
     function handleOutsideClick(event) {
@@ -847,11 +950,38 @@
       }
     }
 
+    function setupDesktopDropdowns() {
+      if (isMobileView()) return;
+      dropdownToggles.forEach(toggle => {
+        const parent = toggle.parentElement;
+        parent.addEventListener('mouseenter', () => {
+          clearTimeout(hoverTimeout);
+          toggle.setAttribute('aria-expanded', 'true');
+          parent.classList.add('dropdown-open');
+          const menuStatus = document.getElementById('menu-status');
+          if (menuStatus) {
+            menuStatus.textContent = `${toggle.textContent} menu opened`;
+          }
+        });
+        parent.addEventListener('mouseleave', () => {
+          hoverTimeout = setTimeout(() => {
+            toggle.setAttribute('aria-expanded', 'false');
+            parent.classList.remove('dropdown-open');
+            const menuStatus = document.getElementById('menu-status');
+            if (menuStatus) {
+              menuStatus.textContent = `${toggle.textContent} menu closed`;
+            }
+          }, 200);
+        });
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       closeAllDropdowns();
       setActiveLink();
       updateLogo();
       handleScrollShadow();
+      setupDesktopDropdowns();
     });
 
     const debouncedResizeHandler = debounce(() => {
@@ -862,6 +992,7 @@
         hamburger.classList.remove('nav-open');
         hamburger.textContent = '☰';
         closeAllDropdowns();
+        setupDesktopDropdowns();
       }
     }, 100);
 
